@@ -219,12 +219,16 @@ def bfs_search(start_state):
         path = queue.pop(0)
         if path[-1][2][5] == 'x':
 
-            if count == 1:
-                shortest = copy.deepcopy(path)
-                count += 1
-            if path.__len__() < shortest.__len__():
-                shortest = copy.deepcopy(path)
+            steps = 1
+            for line in path:
+                print('\n')
+                print("Step {}".format(steps))
+                steps += 1
+                for item in line:
+                    print(item)
 
+            print('Total Steps:' + str(path.__len__()))
+            return True
 
         for next_state in gen_next_states(path[-1]):
 
@@ -232,17 +236,7 @@ def bfs_search(start_state):
                 seen_states.append(next_state)
                 queue.append(path + [next_state])
 
-    if len(shortest) > 0:
-        i = 1
-        for line in shortest:
-            print('\n')
-            print("Step {}".format(i))
-            i += 1
-            for item in line:
-                print(item)
 
-        print('Total Steps:' + str(shortest.__len__()))
-        return True
 
     else:
         return False
@@ -269,8 +263,7 @@ def display_solution(problem_number):
 
 
 if __name__ == '__main__':
-    # NOTE: Running BFS for the problems in failing problems does not return a solution and seems to loop infinitely
-    # This case has not been handled when running individual problems
+
     failing_problems = [2, 13, 14]
     temp = text_load()
     while True:
@@ -283,7 +276,7 @@ if __name__ == '__main__':
         if problem_selection == 1:
             problem = int(input("Which problem would you like to load?"))
             # if problem in failing_problems:
-            #     print("BFS FAILED")
+
 
             x = retrieve_problem(problem, temp)
             # Prints the problem before it is processed into the array
@@ -302,34 +295,30 @@ if __name__ == '__main__':
             for i in range(1, 41):
                 print('BFS Solution for problem {}'.format(i))
 
-                if i in failing_problems:
-                    print("BFS FAILED")
-                else:
-                    x = retrieve_problem(i, temp)
-                    x = display_problem(x)
-                    convert_toLower_if_horizontal(x)
-                    print(bfs_search(x))
-
+                x = retrieve_problem(i, temp)
+                x = display_problem(x)
+                convert_toLower_if_horizontal(x)
+                print(bfs_search(x))
 
 # Commented code bellow is for de
-    # temp = text_load()
+# temp = text_load()
 
-    # x = retrieve_problem(1, temp)
-    # # Prints the problem before it is processed into the array
-    # print(x)
-    # x = display_problem(x)
-    # print(x)
-    # convert_toLower_if_horizontal(x)
-    # bfs_search(x)
-    # # for p in x:
-    # #     print('\n')
-    # #     print(p)
-    # #
-    # #
-    # # for item in gen_next_states(x):
-    # #     print("\n")
-    # #     for z in item:
-    # #         print(z)
+# x = retrieve_problem(1, temp)
+# # Prints the problem before it is processed into the array
+# print(x)
+# x = display_problem(x)
+# print(x)
+# convert_toLower_if_horizontal(x)
+# bfs_search(x)
+# # for p in x:
+# #     print('\n')
+# #     print(p)
+# #
+# #
+# # for item in gen_next_states(x):
+# #     print("\n")
+# #     for z in item:
+# #         print(z)
 
 
 # TO DO
