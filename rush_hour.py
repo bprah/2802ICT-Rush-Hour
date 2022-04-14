@@ -1,10 +1,10 @@
 import copy
 import re
 import time
-# import _pickle as pickle
-import ujson as pickle
+# import _ujson as ujson
+import ujson
+# import marshal as ujson
 
-# n =  problem number
 
 CARS = ['A', 'X', 'K', 'C', 'B', 'D', 'E', 'F', 'G', 'H', 'I', 'J']
 CARS_LOWER = ['a', 'x', 'k', 'c', 'b', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
@@ -14,6 +14,9 @@ TRUCK_LOWER = ['o', 'p', 'q', 'r']
 ALL_VEHICLES = ['A', 'X', 'K', 'C', 'B', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'a', 'x', 'k', 'c', 'b', 'd', 'e', 'f', 'g',
                 'h', 'i', 'j', 'O', 'P', 'Q', 'R', 'o', 'p', 'q', 'r']
 TRUCK_LENGTH = 3
+
+neighbours = [[0, -1], [1, 0], [0, 1], [-1, 0],[0, -2], [2, 0], [0, 2], [-2, 0],[0, -3], [3 0], [0, 3], [-3, 0],[0, -4],
+              [4, 0], [0, 4], [-4, 0],[0, -5], [5, 0], [0, 5], [-5, 0]]
 
 
 def text_load():
@@ -110,7 +113,7 @@ def gen_next_states(array):
         # Iterate through every square on the board and find the next letter
         for x in range(1, 7):
             # temp_array_copy = copy.deepcopy(array)
-            # temp_array_copy = pickle.loads(pickle.dumps(array))
+            # temp_array_copy = ujson.loads(ujson.dumps(array))
 
             vehicle = array[y - 1][x - 1]
             if vehicle in (processed_vehicles_right, processed_vehicles_down, processed_vehicles_left,
@@ -126,7 +129,7 @@ def gen_next_states(array):
 
                         if (x - 1 + 1) <= 5 and vehicle not in processed_vehicles_right:
                             if array[y - 1][x - 1 + 1] == '.' and array[y - 1][x - 1 + 1] not in ALL_VEHICLES:
-                                temp_array_copy = pickle.loads(pickle.dumps(array))
+                                temp_array_copy = ujson.loads(ujson.dumps(array))
                                 temp_array_copy[y - 1][x - 1 - 1] = '.'
                                 temp_array_copy[y - 1][x - 1 + 1] = vehicle
                                 processed_vehicles_right.append(vehicle)
@@ -136,7 +139,7 @@ def gen_next_states(array):
                         # Left from first postition
                         if x - 1 - 1 >= 0 and vehicle not in processed_vehicles_left:
                             if array[y - 1][x - 1 - 1] == '.' and array[y - 1][x - 1 - 1] not in ALL_VEHICLES:
-                                temp_array_copy = pickle.loads(pickle.dumps(array))
+                                temp_array_copy = ujson.loads(ujson.dumps(array))
                                 temp_array_copy[y - 1][x - 1 - 1] = vehicle
                                 temp_array_copy[y - 1][x - 1 + 1] = '.'
                                 processed_vehicles_left.append(vehicle)
@@ -147,7 +150,7 @@ def gen_next_states(array):
                         # Right movement
                         if (x - 1 + 1) <= 5 and vehicle not in processed_vehicles_right:
                             if array[y - 1][x - 1 + 1] == '.' and array[y - 1][x - 1 + 1] not in ALL_VEHICLES:
-                                temp_array_copy = pickle.loads(pickle.dumps(array))
+                                temp_array_copy = ujson.loads(ujson.dumps(array))
                                 temp_array_copy[y - 1][x - 1 - 2] = '.'
                                 temp_array_copy[y - 1][x - 1 + 1] = vehicle
                                 processed_vehicles_right.append(vehicle)
@@ -156,7 +159,7 @@ def gen_next_states(array):
 
                         if x - 1 - 1 >= 0 and vehicle not in processed_vehicles_left:
                             if array[y - 1][x - 1 - 1] == '.' and array[y - 1][x - 1 - 1] not in ALL_VEHICLES:
-                                temp_array_copy = pickle.loads(pickle.dumps(array))
+                                temp_array_copy = ujson.loads(ujson.dumps(array))
                                 temp_array_copy[y - 1][x - 1 - 1] = vehicle
                                 temp_array_copy[y - 1][x - 1 + 2] = '.'
                                 processed_vehicles_left.append(vehicle)
@@ -171,7 +174,7 @@ def gen_next_states(array):
 
                         if (y - 1 + 1) <= 5 and vehicle not in processed_vehicles_down:
                             if array[y - 1 + 1][x - 1] == '.' and array[y - 1 + 1][x - 1] not in ALL_VEHICLES:
-                                temp_array_copy = pickle.loads(pickle.dumps(array))
+                                temp_array_copy = ujson.loads(ujson.dumps(array))
                                 temp_array_copy[y - 1 - 1][x - 1] = '.'
                                 temp_array_copy[y - 1 + 1][x - 1] = vehicle
                                 processed_vehicles_down.append(vehicle)
@@ -181,7 +184,7 @@ def gen_next_states(array):
                         # UP Movement
                         if (y - 1 - 1) >= 0 and vehicle not in processed_vehicles_up:
                             if array[y - 1 - 1][x - 1] == '.' and array[y - 1 - 1][x - 1] not in ALL_VEHICLES:
-                                temp_array_copy = pickle.loads(pickle.dumps(array))
+                                temp_array_copy = ujson.loads(ujson.dumps(array))
                                 temp_array_copy[y - 1 + 1][x - 1] = '.'
                                 temp_array_copy[y - 1 - 1][x - 1] = vehicle
                                 processed_vehicles_up.append(vehicle)
@@ -193,7 +196,7 @@ def gen_next_states(array):
                         # Down
                         if (y - 1 + 1) <= 5 and vehicle not in processed_vehicles_down:
                             if array[y - 1 + 1][x - 1] == '.' and array[y - 1 + 1][x - 1] not in ALL_VEHICLES:
-                                temp_array_copy = pickle.loads(pickle.dumps(array))
+                                temp_array_copy = ujson.loads(ujson.dumps(array))
                                 temp_array_copy[y - 1 - 2][x - 1] = '.'
                                 temp_array_copy[y - 1 + 1][x - 1] = vehicle
                                 processed_vehicles_right.append(vehicle)
@@ -203,7 +206,7 @@ def gen_next_states(array):
                         # UP movement
                         if (y - 1 - 1) >= 0 and vehicle not in processed_vehicles_up:
                             if array[y - 1 - 1][x - 1] == '.' and array[y - 1 - 1][x - 1] not in ALL_VEHICLES:
-                                temp_array_copy = pickle.loads(pickle.dumps(array))
+                                temp_array_copy = ujson.loads(ujson.dumps(array))
                                 temp_array_copy[y - 1 - 1][x - 1] = vehicle
                                 temp_array_copy[y - 1 + 2][x - 1] = '.'
                                 processed_vehicles_up.append(vehicle)
@@ -213,6 +216,13 @@ def gen_next_states(array):
 
     return possible_states
 
+def move_vehicle(vehicle, array, possible_states, direction):
+
+    temp_array_copy = ujson.loads(ujson.dumps(array))
+    temp_array_copy[y - 1 - 1][x - 1] = vehicle
+    temp_array_copy[y - 1 + 2][x - 1] = '.'
+    processed_vehicles_up.append(vehicle)
+    possible_states.append(temp_array_copy)
 
 test = [['a', 'a', '.', '.', '.', 'O'],
         ['P', '.', '.', 'Q', '.', 'O'],
@@ -276,7 +286,7 @@ def display_solution(problem_number):
 
 if __name__ == '__main__':
 
-    failing_problems = [2, 13, 14]
+
     temp = text_load()
     while True:
         print("1.BFS")
