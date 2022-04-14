@@ -15,7 +15,7 @@ ALL_VEHICLES = ['A', 'X', 'K', 'C', 'B', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'a',
                 'h', 'i', 'j', 'O', 'P', 'Q', 'R', 'o', 'p', 'q', 'r']
 TRUCK_LENGTH = 3
 
-neighbours = [[0, -1], [1, 0], [0, 1], [-1, 0],[0, -2], [2, 0], [0, 2], [-2, 0],[0, -3], [3 0], [0, 3], [-3, 0],[0, -4],
+neighbours = [[0, -1], [1, 0], [0, 1], [-1, 0],[0, -2], [2, 0], [0, 2], [-2, 0],[0, -3], [3 ,0], [0, 3], [-3, 0],[0, -4],
               [4, 0], [0, 4], [-4, 0],[0, -5], [5, 0], [0, 5], [-5, 0]]
 
 
@@ -134,6 +134,8 @@ def gen_next_states(array):
                                 temp_array_copy[y - 1][x - 1 + 1] = vehicle
                                 processed_vehicles_right.append(vehicle)
                                 possible_states.append(temp_array_copy)
+                                movement = vehicle.upper() + 'R1'
+                                possible_states.append(movement)
                                 # temp_array_copy = copy.deepcopy(array)
 
                         # Left from first postition
@@ -144,6 +146,8 @@ def gen_next_states(array):
                                 temp_array_copy[y - 1][x - 1 + 1] = '.'
                                 processed_vehicles_left.append(vehicle)
                                 possible_states.append(temp_array_copy)
+                                movement = vehicle.upper() + 'L1'
+                                possible_states.append(movement)
                                 # temp_array_copy = copy.deepcopy(array)
 
                     if vehicle in TRUCK_LOWER:
@@ -155,6 +159,8 @@ def gen_next_states(array):
                                 temp_array_copy[y - 1][x - 1 + 1] = vehicle
                                 processed_vehicles_right.append(vehicle)
                                 possible_states.append(temp_array_copy)
+                                movement = vehicle.upper() + 'R1'
+                                possible_states.append(movement)
                                 # temp_array_copy = copy.deepcopy(array)
 
                         if x - 1 - 1 >= 0 and vehicle not in processed_vehicles_left:
@@ -164,6 +170,8 @@ def gen_next_states(array):
                                 temp_array_copy[y - 1][x - 1 + 2] = '.'
                                 processed_vehicles_left.append(vehicle)
                                 possible_states.append(temp_array_copy)
+                                movement = vehicle.upper() + 'L1'
+                                possible_states.append(movement)
                                 # temp_array_copy = copy.deepcopy(array)
 
                 # If vertical
@@ -179,6 +187,8 @@ def gen_next_states(array):
                                 temp_array_copy[y - 1 + 1][x - 1] = vehicle
                                 processed_vehicles_down.append(vehicle)
                                 possible_states.append(temp_array_copy)
+                                movement = vehicle.upper() + 'D1'
+                                possible_states.append(movement)
 
                                 # temp_array_copy = copy.deepcopy(array)
                         # UP Movement
@@ -189,6 +199,8 @@ def gen_next_states(array):
                                 temp_array_copy[y - 1 - 1][x - 1] = vehicle
                                 processed_vehicles_up.append(vehicle)
                                 possible_states.append(temp_array_copy)
+                                movement = vehicle.upper() + 'U1'
+                                possible_states.append(movement)
 
                                 # temp_array_copy = copy.deepcopy(array)
 
@@ -201,6 +213,8 @@ def gen_next_states(array):
                                 temp_array_copy[y - 1 + 1][x - 1] = vehicle
                                 processed_vehicles_right.append(vehicle)
                                 possible_states.append(temp_array_copy)
+                                movement = vehicle.upper() + 'D1'
+                                possible_states.append(movement)
 
                                 # temp_array_copy = copy.deepcopy(array)
                         # UP movement
@@ -211,6 +225,8 @@ def gen_next_states(array):
                                 temp_array_copy[y - 1 + 2][x - 1] = '.'
                                 processed_vehicles_up.append(vehicle)
                                 possible_states.append(temp_array_copy)
+                                movement = vehicle.upper() + 'U1'
+                                possible_states.append(movement)
 
                                 # temp_array_copy = copy.deepcopy(array)
 
@@ -235,6 +251,8 @@ test = [['a', 'a', '.', '.', '.', 'O'],
 def bfs_search(start_state):
     queue = [[start_state]]
     seen_states = []
+    state_dict = {}
+    movement_path = []
 
     while queue:
 
@@ -246,17 +264,22 @@ def bfs_search(start_state):
                 print('\n')
                 print("Step {}".format(steps))
                 steps += 1
+                movement_path.append(seen_states[seen_states.index(line)+1])
                 for item in line:
                     print(item)
 
             print('Total Steps:' + str(path.__len__()))
+            print(movement_path[1:])
             return True
-
-        for next_state in gen_next_states(path[-1]):
+        next_states = gen_next_states(path[-1])
+        for next_state in next_states[::2]:
 
             if next_state not in seen_states:
                 seen_states.append(next_state)
+                seen_states.append(next_states[next_states.index(next_state)+1])
                 queue.append(path + [next_state])
+
+
 
 
 
@@ -324,6 +347,23 @@ if __name__ == '__main__':
                 x = display_problem(x)
                 convert_toLower_if_horizontal(x)
                 print(bfs_search(x))
+
+# def clean_movement_path(movement_path):
+#     r1 = [index for (index, item) in enumerate(movement_path) if item[1:] == "R1"]
+#     l1 = [index for (index, item) in enumerate(movement_path) if item[1:] == "L1"]
+#     d1 = [index for (index, item) in enumerate(movement_path) if item[1:] == "D1"]
+#     u1 = [index for (index, item) in enumerate(movement_path) if item[1:] == "U1"]
+#     counter = 1
+#     for i in range(len(movement_path)):
+#
+#         list1 = []
+#         if x[i] == x[i + 1]:
+#             counter += 1
+#             continue
+#         else:
+#             list1.append(x[i][0:1] + str(counter))
+
+
 
 # Commented code bellow is for de
 # temp = text_load()
