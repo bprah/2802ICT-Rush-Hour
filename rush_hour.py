@@ -4,7 +4,7 @@ import time
 # import _ujson as ujson
 import ujson
 # import marshal as ujson
-
+import sys
 
 CARS = ['A', 'X', 'K', 'C', 'B', 'D', 'E', 'F', 'G', 'H', 'I', 'J']
 CARS_LOWER = ['a', 'x', 'k', 'c', 'b', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
@@ -15,11 +15,17 @@ ALL_VEHICLES = ['A', 'X', 'K', 'C', 'B', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'a',
                 'h', 'i', 'j', 'O', 'P', 'Q', 'R', 'o', 'p', 'q', 'r']
 TRUCK_LENGTH = 3
 
-neighbours = [[0, -1], [1, 0], [0, 1], [-1, 0],[0, -2], [2, 0], [0, 2], [-2, 0],[0, -3], [3 ,0], [0, 3], [-3, 0],[0, -4],
-              [4, 0], [0, 4], [-4, 0],[0, -5], [5, 0], [0, 5], [-5, 0]]
+neighbours = [[0, -1], [1, 0], [0, 1], [-1, 0], [0, -2], [2, 0], [0, 2], [-2, 0], [0, -3], [3, 0], [0, 3], [-3, 0],
+              [0, -4],
+              [4, 0], [0, 4], [-4, 0], [0, -5], [5, 0], [0, 5], [-5, 0]]
 
 
 def text_load():
+    """
+    Opens rh.txt and then returns a list with all lines loaded
+
+    :return: list: with all lines from rh.txt
+    """
     text = open("rh.txt", "r")
     parsed_strings = []
 
@@ -232,13 +238,14 @@ def gen_next_states(array):
 
     return possible_states
 
-def move_vehicle(vehicle, array, possible_states, direction):
 
+def move_vehicle(vehicle, array, possible_states, direction):
     temp_array_copy = ujson.loads(ujson.dumps(array))
     temp_array_copy[y - 1 - 1][x - 1] = vehicle
     temp_array_copy[y - 1 + 2][x - 1] = '.'
     processed_vehicles_up.append(vehicle)
     possible_states.append(temp_array_copy)
+
 
 test = [['a', 'a', '.', '.', '.', 'O'],
         ['P', '.', '.', 'Q', '.', 'O'],
@@ -248,10 +255,53 @@ test = [['a', 'a', '.', '.', '.', 'O'],
         ['B', '.', 'r', 'r', 'r', '.']]
 
 
-def bfs_search(start_state):
+def dfs_search(start_state):
     queue = [[start_state]]
     seen_states = []
-    state_dict = {}
+    movement_path = []
+
+    while queue:
+
+        path = queue.pop()
+        if path[-1][2][5] == 'x':
+
+            steps = 1
+            for line in path:
+                # print('\n')
+                # print("Step {}".format(steps))
+                # steps += 1
+                movement_path.append(seen_states[seen_states.index(line) + 1])
+                # for item in line:
+                #     print(item)
+
+            # print(movement_path)
+            movement_path = clean_movement_path(movement_path[1:])
+            return (movement_path)
+
+        next_states = gen_next_states(path[-1])
+        for next_state in next_states[::2]:
+
+            if next_state not in seen_states:
+                seen_states.append(next_state)
+                seen_states.append(next_states[next_states.index(next_state) + 1])
+                queue.append(path + [next_state])
+
+
+
+
+
+    else:
+        return False
+
+
+def bfs_search(start_state):
+    """
+    Breadth First search takes in the initial state of the game represented by a 6x6 array
+    :param start_state:
+    :return:
+    """
+    queue = [[start_state]]
+    seen_states = []
     movement_path = []
 
     while queue:
@@ -261,22 +311,23 @@ def bfs_search(start_state):
 
             steps = 1
             for line in path:
-                print('\n')
-                print("Step {}".format(steps))
-                steps += 1
-                movement_path.append(seen_states[seen_states.index(line)+1])
-                for item in line:
-                    print(item)
+                # print('\n')
+                # print("Step {}".format(steps))
+                # steps += 1
+                movement_path.append(seen_states[seen_states.index(line) + 1])
+                # for item in line:
+                #     print(item)
 
-            print('Total Steps:' + str(path.__len__()))
-            print(movement_path[1:])
-            return True
+            # print(movement_path)
+            movement_path = clean_movement_path(movement_path[1:])
+            return (movement_path)
+
         next_states = gen_next_states(path[-1])
         for next_state in next_states[::2]:
 
             if next_state not in seen_states:
                 seen_states.append(next_state)
-                seen_states.append(next_states[next_states.index(next_state)+1])
+                seen_states.append(next_states[next_states.index(next_state) + 1])
                 queue.append(path + [next_state])
 
 
@@ -288,6 +339,11 @@ def bfs_search(start_state):
 
 
 def display_solution(problem_number):
+    """
+
+    :param problem_number:
+    :return:
+    """
     search_string = 'Problem ' + str(problem_number)
     pattern = re.compile(".*{}".format(search_string))
     string_pattern = list(filter(pattern.match, temp))[0]
@@ -307,9 +363,82 @@ def display_solution(problem_number):
         print(temp[j])
 
 
+def clean_movement_path(movement_path):
+    counter = 1
+    clean_path = []
+    for i in range(len(movement_path)):
+
+        if i == len(movement_path) - 1:
+
+            clean_path.append(movement_path[i][0:2] + str(counter))
+
+        elif movement_path[i] == movement_path[i + 1]:
+            counter += 1
+
+        else:
+            clean_path.append(movement_path[i][0:2] + str(counter))
+            counter = 1
+    return clean_path
+
+
+def iterative_deepening(start_state):
+    depth = 0
+    while True:
+        print("Searching at depth {} ".format(depth))
+        result, path = dls(start_state, depth)
+        if result:
+            print(f"Solution found at {depth}")
+            return path
+        depth += 1
+
+
+def dls(start_state, depth):
+    queue = [[start_state]]
+    seen_states = []
+    state_dict = {}
+    movement_path = []
+    start = 0
+
+    while queue:
+        if start <= depth:
+
+            path = queue.pop()
+
+            if path[-1][2][5] == 'x':
+
+                # steps = 1
+                for line in path:
+                    # print('\n')
+                    # print("Step {}".format(steps))
+                    # steps += 1
+                    movement_path.append(seen_states[seen_states.index(line) + 1])
+                    # for item in line:
+                    #     print(item)
+
+                # print(movement_path)
+                movement_path = clean_movement_path(movement_path[1:])
+                return (True, movement_path)
+
+            next_states = gen_next_states(path[-1])
+
+            for next_state in next_states[::2]:
+
+                if next_state not in seen_states:
+                    seen_states.append(next_state)
+                    seen_states.append(next_states[next_states.index(next_state) + 1])
+                    queue.append(path + [next_state])
+            start += 1
+        else:
+            return (False, None)
+
+
+
+
+    else:
+        return (False, None)
+
+
 if __name__ == '__main__':
-
-
     temp = text_load()
     while True:
         print("1.BFS")
@@ -321,7 +450,6 @@ if __name__ == '__main__':
         if problem_selection == 1:
             problem = int(input("Which problem would you like to load?"))
             # if problem in failing_problems:
-
 
             x = retrieve_problem(problem, temp)
             # Prints the problem before it is processed into the array
@@ -340,50 +468,41 @@ if __name__ == '__main__':
             if answer == 'N':
                 pass
         if problem_selection == 2:
-            for i in range(1, 41):
-                print('BFS Solution for problem {}'.format(i))
+            with open('output.txt', 'w') as f:
 
-                x = retrieve_problem(i, temp)
-                x = display_problem(x)
-                convert_toLower_if_horizontal(x)
-                print(bfs_search(x))
+                for i in range(1, 41):
+                    print('Results for bfs will be written to output.txt')
+                    print('BFS Solution for problem {}'.format(i), file=f)
 
-# def clean_movement_path(movement_path):
-#     r1 = [index for (index, item) in enumerate(movement_path) if item[1:] == "R1"]
-#     l1 = [index for (index, item) in enumerate(movement_path) if item[1:] == "L1"]
-#     d1 = [index for (index, item) in enumerate(movement_path) if item[1:] == "D1"]
-#     u1 = [index for (index, item) in enumerate(movement_path) if item[1:] == "U1"]
-#     counter = 1
-#     for i in range(len(movement_path)):
+                    x = retrieve_problem(i, temp)
+                    x = display_problem(x)
+
+                    convert_toLower_if_horizontal(x)
+                    start_time = time.time()
+                    print(iterative_deepening(x), file=f)
+                    executionTime = (time.time() - start_time)
+                    print('Execution time in seconds: ' + str(executionTime), file=f)
+                    print('BFS Solution for problem {} generated'.format(i))
+
+    # Commented code bellow is for de
+    # temp = text_load()
+    #
+    # x = retrieve_problem(1, temp)
+    # # Prints the problem before it is processed into the array
+    # print(x)
+    # x = display_problem(x)
+    # print(x)
+    # convert_toLower_if_horizontal(x)
+    # print(iterative_deepening(x))
+# for p in x:
+#     print('\n')
+#     print(p)
 #
-#         list1 = []
-#         if x[i] == x[i + 1]:
-#             counter += 1
-#             continue
-#         else:
-#             list1.append(x[i][0:1] + str(counter))
-
-
-
-# Commented code bellow is for de
-# temp = text_load()
-
-# x = retrieve_problem(1, temp)
-# # Prints the problem before it is processed into the array
-# print(x)
-# x = display_problem(x)
-# print(x)
-# convert_toLower_if_horizontal(x)
-# bfs_search(x)
-# # for p in x:
-# #     print('\n')
-# #     print(p)
-# #
-# #
-# # for item in gen_next_states(x):
-# #     print("\n")
-# #     for z in item:
-# #         print(z)
+#
+# for item in gen_next_states(x):
+#     print("\n")
+#     for z in item:
+#         print(z)
 
 
 # TO DO
