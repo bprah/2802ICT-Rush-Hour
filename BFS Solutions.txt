@@ -1,0 +1,121 @@
+BFS Solution for problem 1
+(['AR1', 'PU1', 'OD1', 'BU1', 'CL1', 'OD1', 'CL2', 'QD1', 'OD1', 'RL2', 'QD1', 'XR3'], ' Nodes Visited:1076.0', 'Solution found at depth: 1072 ')
+Execution time in seconds: 0.30648207664489746
+BFS Solution for problem 2
+(['OL2', 'XR1', 'AD1', 'OL1', 'BU1', 'XR1', 'CU2', 'XR1', 'EL1', 'PD2', 'XR1'], ' Nodes Visited:3378.0', 'Solution found at depth: 2920 ')
+Execution time in seconds: 2.3456337451934814
+BFS Solution for problem 3
+(['OU2', 'AR2', 'PU3', 'AR1', 'OD2', 'BU1', 'CL1', 'OD1', 'XR1', 'BU3', 'XL1', 'OU3', 'AL1', 'PD1', 'AL2', 'OD2', 'PD1', 'OD1', 'XR2', 'PD1', 'XR1'], ' Nodes Visited:831.0', 'Solution found at depth: 819 ')
+Execution time in seconds: 0.16370654106140137
+BFS Solution for problem 4
+(['OD3', 'XL1', 'AU3', 'XR1', 'OU3', 'QL3', 'PD2', 'RL2', 'PD1', 'XR3'], ' Nodes Visited:436.0', 'Solution found at depth: 425 ')
+Execution time in seconds: 0.04737496376037598
+BFS Solution for problem 5
+(['AR1', 'PU1', 'RL1', 'OD1', 'EL1', 'GD1', 'EL1', 'QD1', 'EL1', 'OD1', 'FL2', 'QD1', 'FL1', 'OD1', 'XR3'], ' Nodes Visited:2716.0', 'Solution found at depth: 2651 ')
+Execution time in seconds: 1.79659104347229
+BFS Solution for problem 6
+(['XL1', 'EU3', 'XR1', 'DR1', 'OD1', 'PD1', 'FU1', 'RL1', 'PD1', 'RL1', 'OD1', 'RL1', 'QD1', 'XR3'], ' Nodes Visited:2284.0', 'Solution found at depth: 2169 ')
+Execution time in seconds: 1.0885708332061768
+BFS Solution for problem 7
+(['CD1', 'BR1', 'FD1', 'DD1', 'BR1', 'EU1', 'XR1', 'AD3', 'XL1', 'ED1', 'BL3', 'EU1', 'CU1', 'DU1', 'XR3'], ' Nodes Visited:5111.0', 'Solution found at depth: 4302 ')
+Execution time in seconds: 5.605413198471069
+BFS Solution for problem 8
+(['AL3', 'BL2', 'CU1', 'DU2', 'XR1', 'EU2', 'XR2', 'GL1', 'OD1', 'IU2', 'PL1', 'OD1', 'QL1', 'OD1', 'XR1'], ' Nodes Visited:951.0', 'Solution found at depth: 951 ')
+Execution time in seconds: 0.20583748817443848
+BFS Solution for problem 9
+(['XR1', 'PU3', 'QL1', 'DD1', 'EL1', 'FU1', 'DD1', 'XR1', 'AD1', 'BL1', 'CL1', 'FU1', 'OD1', 'XR2'], ' Nodes Visited:752.0', 'Solution found at depth: 631 ')
+Execution time in seconds: 0.12784385681152344
+BFS Solution for problem 10
+(['CL1', 'OU1', 'XR2', 'BD1', 'AR1', 'QR2', 'BD1', 'DR1', 'PU2', 'BD1', 'XL2', 'BD1', 'QL1', 'OD1', 'CR1', 'QL2', 'EU4', 'XR2', 'FL1', 'OD1', 'HL1', 'OD1', 'XR1'], ' Nodes Visited:2310.0', 'Solution found at depth: 2158 ')
+Execution time in seconds: 1.1333985328674316
+BFS Solution for problem 11
+(['OD3', 'XL1', 'BU2', 'QL1', 'EU3', 'QR1', 'BD2', 'XR1', 'OU3', 'RR1', 'BD1', 'QL3', 'PD1', 'AR3', 'PU1', 'QR1', 'OD2', 'QR2', 'OD1', 'XL1', 'BU4', 'XR1', 'OU3', 'QL1', 'ED1', 'QL2', 'PD2', 'ED1', 'RL3', 'PD1', 'XR3'], ' Nodes Visited:860.0', 'Solution found at depth: 850 ')
+Execution time in seconds: 0.17154765129089355
+BFS Solution for problem 12
+(['BR2', 'PU1', 'QL2', 'CU3', 'QR2', 'PD1', 'BL2', 'CU1', 'PD1', 'RR3', 'PD1', 'XR1', 'AD1', 'BL1', 'XR2', 'PU3', 'QL1', 'OD2', 'RL1', 'OD1', 'XR1'], ' Nodes Visited:1084.0', 'Solution found at depth: 981 ')
+Execution time in seconds: 0.23496484756469727
+BFS Solution for problem 13
+(['OU1', 'DD1', 'ED1', 'DD1', 'XL1', 'CD1', 'BR3', 'XL2', 'DU3', 'XR1', 'FR1', 'GU3', 'FL1', 'OD1', 'BR1', 'GU1', 'XR1', 'FL1', 'CD1', 'HL1', 'OD1', 'HL1', 'CD1', 'XR1', 'KL1', 'OD1', 'XR1'], ' Nodes Visited:11032.0', 'Solution found at depth: 10722 ')
+Execution time in seconds: 87.18526577949525
+BFS Solution for problem 14
+(['DD1', 'ED1', 'XL2', 'BD1', 'AR3', 'BU1', 'XR2', 'DU3', 'EU3', 'XL2', 'HL2', 'IU2', 'JL1', 'GD1', 'JL1', 'FD1', 'JL2', 'ID1', 'XR4'], ' Nodes Visited:16495.0', 'Solution found at depth: 14429 ')
+Execution time in seconds: 180.49834179878235
+BFS Solution for problem 15
+(['AL1', 'BR1', 'QD1', 'IR1', 'HR1', 'RD1', 'XL2', 'EU1', 'FU1', 'GL1', 'PD1', 'GL1', 'OD1', 'DR2', 'EU2', 'XR1', 'FU2', 'XR1', 'QU1', 'RU1', 'HL2', 'IL1', 'PD1', 'IL1', 'OD1', 'XR2'], ' Nodes Visited:530.0', 'Solution found at depth: 525 ')
+Execution time in seconds: 0.08737015724182129
+BFS Solution for problem 16
+(['EL1', 'DD1', 'EL1', 'DD1', 'FD1', 'PD1', 'XL1', 'CD1', 'BR1', 'XL2', 'PU3', 'QL1', 'GR2', 'FD1', 'QL1', 'CD3', 'QR2', 'PD2', 'FU1', 'GL2', 'PD1', 'XR3', 'PU3', 'QL1', 'OD3', 'XR1'], ' Nodes Visited:2929.0', 'Solution found at depth: 2784 ')
+Execution time in seconds: 2.8774166107177734
+BFS Solution for problem 17
+(['OR2', 'BL1', 'PU2', 'QR1', 'FU2', 'QR1', 'GU2', 'QR1', 'DD1', 'XR1', 'AD1', 'RR3', 'DD1', 'ER1', 'AD1', 'BL1', 'AD1', 'XL1', 'AD1', 'EL1', 'DU4', 'XR1', 'ER1', 'AU2', 'QL1', 'GD1', 'QL1', 'FD1', 'QL1', 'PD1', 'RL3', 'PD1', 'XR3'], ' Nodes Visited:2188.0', 'Solution found at depth: 2162 ')
+Execution time in seconds: 1.5161640644073486
+BFS Solution for problem 18
+(['QR2', 'DR3', 'RR1', 'PD1', 'XL1', 'BD1', 'AR1', 'BD1', 'CR1', 'BD1', 'XR1', 'PU3', 'RR2', 'BD1', 'QL3', 'OD1', 'AR3', 'OD1', 'CR3', 'OU2', 'QR1', 'PD2', 'QR2', 'PD1', 'XL1', 'BU4', 'XR1', 'PU3', 'QL3', 'OD2', 'RL3', 'OD1', 'XR3'], ' Nodes Visited:1633.0', 'Solution found at depth: 1619 ')
+Execution time in seconds: 0.692828893661499
+BFS Solution for problem 19
+(['DU2', 'XL2', 'AD1', 'BL1', 'JU1', 'EL2', 'AD1', 'FU1', 'OR2', 'AD1', 'XR2', 'DD1', 'BL2', 'AD1', 'ER2', 'DD2', 'XL2', 'DD1', 'EL2', 'AU4', 'XR2', 'ER2', 'DU2', 'OL2', 'FD1', 'XR2'], ' Nodes Visited:513.0', 'Solution found at depth: 488 ')
+Execution time in seconds: 0.059377431869506836
+BFS Solution for problem 20
+(['CD1', 'BR2', 'DU2', 'EU2', 'FL2', 'CD1', 'FL1', 'ED1', 'XR3', 'QL1', 'PD1', 'XR1'], ' Nodes Visited:2393.0', 'Solution found at depth: 2047 ')
+Execution time in seconds: 1.0234787464141846
+BFS Solution for problem 21
+(['PD1', 'QR2', 'PD1', 'XL1', 'BD1', 'AR1', 'BD2', 'XR1', 'PU3', 'BD1', 'QL3', 'OD1', 'AR3', 'OU1', 'QR1', 'PD2', 'QR2', 'PD1', 'XL1', 'BU4', 'XR1', 'PU3', 'QL3', 'OD2', 'RL3', 'OD1', 'XR3'], ' Nodes Visited:265.0', 'Solution found at depth: 262 ')
+Execution time in seconds: 0.018000125885009766
+BFS Solution for problem 22
+(['BU1', 'XL1', 'AD1', 'OL2', 'AD1', 'FU1', 'GR1', 'AD1', 'XR1', 'BD1', 'OL1', 'PU1', 'EL1', 'HU2', 'GR1', 'QR1', 'DD1', 'QR1', 'AD1', 'EL2', 'PD2', 'CL3', 'PU2', 'HU2', 'ER3', 'PD2', 'DU1', 'AU1', 'QL3', 'PD1', 'XR3'], ' Nodes Visited:4900.0', 'Solution found at depth: 4753 ')
+Execution time in seconds: 6.793966054916382
+BFS Solution for problem 23
+(['QL2', 'DD1', 'EL1', 'PD1', 'OR1', 'AU1', 'XL3', 'AD1', 'OL1', 'PU1', 'ER1', 'DU2', 'FL1', 'QR3', 'CD1', 'AD1', 'BL3', 'AU1', 'DU1', 'EL1', 'PD1', 'OR1', 'AU1', 'EL2', 'DD1', 'EL1', 'PD1', 'CU2', 'FL2', 'DD1', 'FL1', 'CD1', 'XR3', 'QL1', 'PD1', 'XR1'], ' Nodes Visited:2822.0', 'Solution found at depth: 2653 ')
+Execution time in seconds: 1.4758896827697754
+BFS Solution for problem 24
+(['CU1', 'XL1', 'EU1', 'OR1', 'DD1', 'XL1', 'AD1', 'BL1', 'EU1', 'GU2', 'OR2', 'HR1', 'DD1', 'FL1', 'AD2', 'XR2', 'CD1', 'BL2', 'HR2', 'AD1', 'FR2', 'CD2', 'XL2', 'CD1', 'FL2', 'AU4', 'XR2', 'FR2', 'CU2', 'OL2', 'GD1', 'XR2'], ' Nodes Visited:4346.0', 'Solution found at depth: 4264 ')
+Execution time in seconds: 4.756200790405273
+BFS Solution for problem 25
+(['CL1', 'OU1', 'EU1', 'QR2', 'PD1', 'XL1', 'BD1', 'AR1', 'BD1', 'DR1', 'BD1', 'XR1', 'PU3', 'BD1', 'QL3', 'GU3', 'QR1', 'PD1', 'AL1', 'PD1', 'DL1', 'QR2', 'PD1', 'XL1', 'BU4', 'XR1', 'QL1', 'OD1', 'CR1', 'GU1', 'XR1', 'QL1', 'ED1', 'HL1', 'OD1', 'HL1', 'ED1', 'XR1', 'IL1', 'OD1', 'XR1'], ' Nodes Visited:8896.0', 'Solution found at depth: 8850 ')
+Execution time in seconds: 38.834471702575684
+BFS Solution for problem 26
+(['OL1', 'DU2', 'ED1', 'RL1', 'CD2', 'XR1', 'AD1', 'OL2', 'PU1', 'GU1', 'HR1', 'CD1', 'RR2', 'AD2', 'XL1', 'AD1', 'RL2', 'CU4', 'XR1', 'RR2', 'EU1', 'AU3', 'HL1', 'GD1', 'RR1', 'FU1', 'HL3', 'FD1', 'RL2', 'PD3', 'XR2'], ' Nodes Visited:4866.0', 'Solution found at depth: 4849 ')
+Execution time in seconds: 6.9149370193481445
+BFS Solution for problem 27
+(['PU2', 'ER1', 'OD1', 'BR2', 'OD1', 'CR2', 'DU2', 'XR1', 'AD3', 'XL1', 'DD1', 'BL3', 'DD1', 'CL3', 'DU1', 'OU2', 'EL1', 'PD1', 'EL2', 'OD2', 'PD1', 'AD1', 'EL1', 'DD1', 'CR3', 'DU2', 'XR1', 'ER1', 'AU3', 'EL1', 'FU1', 'RL1', 'PD1', 'RL2', 'OD1', 'XR3'], ' Nodes Visited:2937.0', 'Solution found at depth: 2827 ')
+Execution time in seconds: 1.597944736480713
+BFS Solution for problem 28
+(['AD1', 'OR3', 'PU1', 'EL1', 'QU1', 'GR1', 'FR1', 'CD1', 'GR1', 'FR1', 'DD1', 'EL1', 'AD1', 'BL1', 'QU1', 'EL1', 'PD1', 'RR1', 'PD1', 'BL3', 'PU2', 'AU1', 'ER3', 'PD1', 'OL3', 'AU1', 'PD1', 'CU1', 'DU1', 'FL2', 'PD1', 'XR3', 'PU2', 'RL1', 'QD1', 'GL1', 'QD1', 'XR1'], ' Nodes Visited:2274.0', 'Solution found at depth: 2174 ')
+Execution time in seconds: 1.1166908740997314
+BFS Solution for problem 29
+(['OR1', 'BU1', 'ER1', 'GU3', 'EL1', 'FR2', 'HU1', 'RR1', 'CD1', 'DL1', 'AD2', 'XR1', 'RR2', 'AD1', 'DR1', 'CU4', 'XL1', 'DL1', 'AU3', 'FL2', 'RL1', 'HD1', 'ER1', 'GD2', 'RL2', 'GD1', 'EL2', 'PD1', 'OR2', 'AU1', 'XR2', 'PD2', 'XR1', 'AD1', 'OL1', 'BU1', 'XR1'], ' Nodes Visited:4331.0', 'Solution found at depth: 4313 ')
+Execution time in seconds: 4.350773334503174
+BFS Solution for problem 30
+(['DR1', 'CR1', 'OD2', 'QU2', 'FR1', 'ER1', 'OD1', 'XL1', 'AD1', 'PL1', 'QU1', 'DR1', 'BD2', 'FR1', 'BD1', 'DL1', 'QD1', 'PR1', 'AU1', 'XR3', 'AD1', 'PL2', 'QU1', 'OU3', 'CL1', 'AD2', 'XL2', 'DR1', 'BU3', 'DL1', 'QD2', 'EL1', 'AD1', 'CR1', 'OD1', 'PL1', 'BU1', 'XR2', 'FL1', 'QD1', 'XR1'], ' Nodes Visited:1171.0', 'Solution found at depth: 1170 ')
+Execution time in seconds: 0.29312586784362793
+BFS Solution for problem 31
+(['AR1', 'DU2', 'XL1', 'QU2', 'FR3', 'QD2', 'XR1', 'DD1', 'AL1', 'DD2', 'XL1', 'QU3', 'EL2', 'BD1', 'CL1', 'PU1', 'DD1', 'EL1', 'QD3', 'XR1', 'FR1', 'BD1', 'XR2', 'QU3', 'ER1', 'DU3', 'EL1', 'QD1', 'AR1', 'DU1', 'QD2', 'XL3', 'QU2', 'BU1', 'FL1', 'PD1', 'FL2', 'BD1', 'FL1', 'QD2', 'XR3', 'QU1', 'RL1', 'PD1', 'XR1'], ' Nodes Visited:3998.0', 'Solution found at depth: 3930 ')
+Execution time in seconds: 3.204864501953125
+BFS Solution for problem 32
+(['BD1', 'CL1', 'PU3', 'FR1', 'KU1', 'HR1', 'DD1', 'EL1', 'OD2', 'HR2', 'OD1', 'XR1', 'HR1', 'KD1', 'FL1', 'PD1', 'CR1', 'BU1', 'XR2', 'OU3', 'ER1', 'DU3', 'EL1', 'OD1', 'AR1', 'DU1', 'OD2', 'XL2', 'BD1', 'CL1', 'PU1', 'XL1', 'OU1', 'FR1', 'KU1', 'HL3', 'KD1', 'FL1', 'PD1', 'CR1', 'BU1', 'PD2', 'HL1', 'OD1', 'XR4'], ' Nodes Visited:619.0', 'Solution found at depth: 607 ')
+Execution time in seconds: 0.07678985595703125
+BFS Solution for problem 33
+(['BL1', 'PU3', 'ER1', 'GU3', 'EL1', 'FR1', 'QR1', 'ID1', 'DL1', 'EL1', 'HU3', 'ER1', 'RD1', 'BL1', 'HU1', 'ER1', 'GD1', 'FR1', 'RD1', 'FR1', 'GD1', 'QR2', 'RD1', 'XR2', 'AD1', 'BL2', 'XR1', 'RU3', 'DR1', 'IU3', 'DL1', 'RD1', 'BR2', 'IU1', 'AU1', 'RD2', 'XL3', 'RU2', 'GU1', 'FL3', 'GD1', 'FL1', 'RD2', 'XR3', 'RU1', 'QL3', 'GD1', 'EL1', 'PD3', 'XR1'], ' Nodes Visited:4127.0', 'Solution found at depth: 4039 ')
+Execution time in seconds: 4.132970333099365
+BFS Solution for problem 34
+(['RL2', 'PU1', 'XR1', 'AD1', 'RL1', 'BU1', 'CU1', 'HR1', 'DD1', 'QR1', 'AD2', 'XL1', 'QR2', 'EU3', 'QL1', 'PD1', 'QL1', 'IR1', 'AD1', 'QL1', 'DU2', 'FL3', 'DD1', 'BD1', 'RR3', 'EU1', 'XR1', 'DD1', 'QR2', 'AU4', 'XL1', 'ED1', 'RL2', 'CU1', 'PU1', 'QR1', 'ED1', 'FL1', 'ED1', 'XR1', 'AD1', 'RL1', 'BU1', 'XR2', 'EU2', 'QL1', 'PD1', 'QL2', 'PD1', 'DU1', 'HL1', 'PD1', 'XR1'], ' Nodes Visited:4426.0', 'Solution found at depth: 4415 ')
+Execution time in seconds: 5.741881608963013
+BFS Solution for problem 35
+(['PD1', 'AR1', 'BU1', 'FU3', 'GR1', 'KD1', 'QL1', 'EU2', 'DR3', 'ED1', 'BD1', 'AL1', 'PU1', 'ED1', 'QR3', 'OD2', 'KU1', 'GL1', 'OD1', 'XR1', 'KU3', 'XL1', 'OU3', 'QL1', 'PD1', 'AR1', 'BU1', 'QL2', 'EU2', 'DL3', 'ED1', 'BD1', 'AL1', 'PU1', 'DL1', 'ED1', 'QR3', 'OD1', 'AL2', 'BU1', 'FU1', 'OD2', 'XR1', 'KD1', 'AL1', 'XR2', 'OU3', 'QL1', 'PD3', 'XR1'], ' Nodes Visited:3974.0', 'Solution found at depth: 3907 ')
+Execution time in seconds: 3.8729445934295654
+BFS Solution for problem 36
+(['CR1', 'XR1', 'DD1', 'RR1', 'OD1', 'PL1', 'AL1', 'QU1', 'RR2', 'EU3', 'RL1', 'QD1', 'AR1', 'PR1', 'OU1', 'RL2', 'DU1', 'GR4', 'DD1', 'RR1', 'OD1', 'PL1', 'AL1', 'QU1', 'RR1', 'BD2', 'RR1', 'ED2', 'XL2', 'BD1', 'ED1', 'RL1', 'QD1', 'AR1', 'PR1', 'OU1', 'RL2', 'DU2', 'FL1', 'QD1', 'CR1', 'DU1', 'RR1', 'OD1', 'PL1', 'DU1', 'XR2', 'GL1', 'QD1', 'XR1'], ' Nodes Visited:2876.0', 'Solution found at depth: 2700 ')
+Execution time in seconds: 2.2829325199127197
+BFS Solution for problem 37
+(['CL1', 'PU1', 'GR1', 'QD1', 'XL1', 'BD1', 'CL1', 'OU1', 'RR2', 'BD1', 'DR1', 'BD1', 'XR1', 'QU2', 'GL1', 'BD1', 'RL2', 'OD1', 'CR1', 'AR1', 'QU1', 'RL1', 'EU3', 'RR1', 'QD1', 'AL1', 'CL1', 'OU1', 'QD1', 'DL1', 'RR2', 'BU1', 'FL1', 'GR1', 'QD1', 'XL1', 'BU2', 'RL1', 'PD1', 'RL1', 'OD1', 'CR2', 'BU1', 'EU1', 'XR2', 'QU1', 'PD1', 'FL1', 'OD1', 'GL1', 'HL1', 'PD1', 'HL1', 'OD1', 'XR2'], ' Nodes Visited:1957.0', 'Solution found at depth: 1950 ')
+Execution time in seconds: 1.0344345569610596
+BFS Solution for problem 38
+(['OL1', 'RU2', 'ER1', 'CD1', 'BR2', 'DU1', 'FU1', 'GR1', 'CD1', 'QL3', 'CD1', 'EL1', 'RD1', 'OR1', 'DU1', 'XR1', 'AD3', 'XL1', 'DD1', 'OL1', 'RU1', 'ER1', 'CU2', 'GL1', 'QR1', 'AD1', 'QR2', 'FD1', 'DD1', 'BL3', 'DU1', 'CU1', 'EL1', 'RD1', 'OR1', 'EL2', 'CD1', 'EL1', 'DD1', 'BR3', 'DU2', 'XR1', 'ER1', 'RD1', 'AU4', 'XL1', 'EL1', 'FU2', 'GL2', 'CD1', 'GL1', 'FD1', 'XR3', 'QL1', 'RD1', 'XR1'], ' Nodes Visited:4075.0', 'Solution found at depth: 3945 ')
+Execution time in seconds: 3.7030017375946045
+BFS Solution for problem 39
+(['RU1', 'HR1', 'CD1', 'AD1', 'OL1', 'RU1', 'ER1', 'BD1', 'HR1', 'BD1', 'IR1', 'CD1', 'DR1', 'FU1', 'IR1', 'BD1', 'EL1', 'RD1', 'OR1', 'AU1', 'XR3', 'AD1', 'OL1', 'RU1', 'FU3', 'ER1', 'DR1', 'GU4', 'DL2', 'EL1', 'RD1', 'OR1', 'AU1', 'XL3', 'AD1', 'OL1', 'RU1', 'ER1', 'CU1', 'BU3', 'EL1', 'RD1', 'OR1', 'AU1', 'CU1', 'HL4', 'CD1', 'AD1', 'OL1', 'RU1', 'ER1', 'BD2', 'IL3', 'BD1', 'EL1', 'RD1', 'OR1', 'AU1', 'XR3', 'RD2', 'XR1'], ' Nodes Visited:4046.0', 'Solution found at depth: 3926 ')
+Execution time in seconds: 3.2596700191497803
+BFS Solution for problem 40
+(['PU1', 'IR1', 'ED1', 'QR1', 'OD1', 'AL1', 'DU1', 'XL1', 'BD1', 'OD1', 'QR1', 'CD2', 'XL1', 'QR1', 'FU1', 'HR1', 'OD1', 'XL1', 'DD1', 'AR3', 'DU1', 'XR2', 'OU3', 'CU3', 'XL1', 'HL1', 'FD1', 'QL1', 'PD1', 'AR1', 'QL2', 'EU4', 'XR1', 'CD1', 'QR1', 'OD2', 'QR1', 'CD2', 'XL1', 'ED1', 'AL1', 'PU1', 'QR1', 'FU1', 'GL1', 'HR1', 'OD1', 'XL1', 'DD1', 'AL3', 'DU1', 'EU1', 'BU1', 'XR3', 'OU1', 'HL1', 'FD1', 'QL1', 'PD2', 'IL1', 'PD1', 'XR1'], ' Nodes Visited:3140.0', 'Solution found at depth: 3048 ')
+Execution time in seconds: 2.2681338787078857
+

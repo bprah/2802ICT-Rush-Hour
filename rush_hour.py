@@ -1,10 +1,12 @@
 import copy
 import re
 import time
-# import _ujson as ujson
+
 import ujson
-# import marshal as ujson
+import heapq
+
 import sys
+import queue
 
 CARS = ['A', 'X', 'K', 'C', 'B', 'D', 'E', 'F', 'G', 'H', 'I', 'J']
 CARS_LOWER = ['a', 'x', 'k', 'c', 'b', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
@@ -144,7 +146,7 @@ def gen_next_states(array):
                                 possible_states.append(movement)
                                 # temp_array_copy = copy.deepcopy(array)
 
-                        # Left from first postition
+                        # Left from first position
                         if x - 1 - 1 >= 0 and vehicle not in processed_vehicles_left:
                             if array[y - 1][x - 1 - 1] == '.' and array[y - 1][x - 1 - 1] not in ALL_VEHICLES:
                                 temp_array_copy = ujson.loads(ujson.dumps(array))
@@ -249,7 +251,7 @@ def move_vehicle(vehicle, array, possible_states, direction):
 
 test = [['a', 'a', '.', '.', '.', 'O'],
         ['P', '.', '.', 'Q', '.', 'O'],
-        ['P', 'x', 'x', 'Q', '.', 'O'],
+        ['x', 'x', '.', 'a', 'x', '.'],
         ['P', '.', '.', 'Q', '.', '.'],
         ['B', '.', '.', '.', 'c', 'c'],
         ['B', '.', 'r', 'r', 'r', '.']]
@@ -286,23 +288,21 @@ def dfs_search(start_state):
                 seen_states.append(next_states[next_states.index(next_state) + 1])
                 queue.append(path + [next_state])
 
-
-
-
-
     else:
         return False
 
 
 def bfs_search(start_state):
     """
-    Breadth First search takes in the initial state of the game represented by a 6x6 array
+    Breadth First search takes in the initial state of the game represented by a 6x6 array and then solves for the goal
+    state.
     :param start_state:
     :return:
     """
     queue = [[start_state]]
     seen_states = []
     movement_path = []
+    depth = 0
 
     while queue:
 
@@ -320,7 +320,10 @@ def bfs_search(start_state):
 
             # print(movement_path)
             movement_path = clean_movement_path(movement_path[1:])
-            return (movement_path)
+            depth = f'Solution found at depth: {depth} '
+            nodes_visited = f' Nodes Visited:{len(seen_states) / 2}'
+            steps = f'{len(movement_path)} steps'
+            return movement_path, steps, nodes_visited, depth
 
         next_states = gen_next_states(path[-1])
         for next_state in next_states[::2]:
@@ -329,10 +332,7 @@ def bfs_search(start_state):
                 seen_states.append(next_state)
                 seen_states.append(next_states[next_states.index(next_state) + 1])
                 queue.append(path + [next_state])
-
-
-
-
+        depth += 1
 
     else:
         return False
@@ -340,7 +340,7 @@ def bfs_search(start_state):
 
 def display_solution(problem_number):
     """
-
+    Prints the solutions
     :param problem_number:
     :return:
     """
@@ -431,59 +431,231 @@ def dls(start_state, depth):
         else:
             return (False, None)
 
-
-
-
     else:
         return (False, None)
 
 
+def distance_from_end(game_state: list):
+    """
+    Takes in the game state and returns heuristic that decreases as the x vehicle(red) gets closer to the goal state.
+    :param game_state:Current state of the game
+    :return:
+    """
+    temp = game_state[2]
+    distance = 5 - (len(temp) - 1 - temp[::-1].index('x'))
+    return distance
+
+
+def blocking_cars(game_state: list):
+    """
+    Takes in the game state and returns heuristic that decreases based on whether there is not a car blocking its path &
+    how far it is from the goal state.
+    :param game_state:
+    :return:
+    """
+    temp = game_state[2]
+    car_index = len(temp) - temp[::-1].index('x') - 1
+    distance = 5 - car_index
+    no_cars_blocking = 0
+    for i in range(car_index + 1, len(temp)):
+        if str(temp[i]).isalpha():
+            no_cars_blocking += 1
+
+    return no_cars_blocking + distance
+
+
+def blocking_cars_empty_spaces(game_state: list):
+    temp = game_state[2]
+    empty_spaces = 0
+    no_cars_blocking = 0
+    car_index = len(temp) - temp[::-1].index('x') - 1
+    distance = 5 - car_index
+    for i in range(car_index + 1, len(temp)):
+        if str(temp[i]) == '.':
+            empty_spaces += 1
+        if str(temp[i]).isalpha():
+            no_cars_blocking += 1
+    return empty_spaces + no_cars_blocking + distance
+
+
+def a_star_search(start_state: list):
+    seen_states = []
+    queue = [(0, start_state)]
+    movement_path = []
+    depth = 0
+
+
+    while queue:
+        queue.sort(key=lambda tup: tup[0])
+        path = queue.pop(0)
+        if path[-1][2][5] == 'x':
+            # Slice tuple to return path without values
+            path = list(path[1::2])
+
+            steps = 1
+            for line in path:
+                #     print('\n')
+                #     print("Step {}".format(steps))
+                #     steps += 1
+                movement_path.append(seen_states[seen_states.index(line) + 1])
+            #     for item in line:
+            #         print(item)
+
+            # print(movement_path)
+            movement_path = clean_movement_path(movement_path[1:])
+            depth = f'Solution found at depth: {depth} '
+            nodes_visited = f' Nodes Visited:{len(seen_states) / 2}'
+            steps = f'{len(movement_path)} steps'
+            return movement_path, steps, nodes_visited, depth
+
+
+        next_states = gen_next_states(path[-1])
+        for next_state in next_states[::2]:
+
+            if next_state not in seen_states:
+                distance = len(path) - 1 + distance_from_end(next_state)
+                seen_states.append(next_state)
+                seen_states.append(next_states[next_states.index(next_state) + 1])
+                queue.append(path + (tuple([distance, next_state])))
+        depth += 1
+    return False
+
+
 if __name__ == '__main__':
+    print(blocking_cars_empty_spaces(test))
+
     temp = text_load()
     while True:
-        print("1.BFS")
+        print("1.Breadth First Search")
+        print("2.Iterative Deepening")
+        print("3. A*")
         search_selection = int(input("What number algorithm would you like to run?"))
-        print("1.Would you like to run this for a specific problem?")
-        print("2. Would you like to run this for all problems?")
-        problem_selection = int(input())
-        # Load specific problem and then
-        if problem_selection == 1:
-            problem = int(input("Which problem would you like to load?"))
-            # if problem in failing_problems:
+        if search_selection == 1:
 
-            x = retrieve_problem(problem, temp)
-            # Prints the problem before it is processed into the array
-            display_solution(problem)
-            print('Would you like to generate a solution for this problem?')
-            answer = input('Y or N?')
-            if answer == 'Y':
-                x = display_problem(x)
-                convert_toLower_if_horizontal(x)
-                if search_selection == 1:
-                    print('BFS Solution for problem {}'.format(problem))
+            print("1.Would you like to run this for a specific problem?")
+            print("2. Would you like to run this for all problems?")
+            problem_selection = int(input())
+            # Load specific problem and then
+            if problem_selection == 1:
+                problem = int(input("Which problem would you like to load?"))
+                # if problem in failing_problems:
+
+                x = retrieve_problem(problem, temp)
+                # Prints the problem before it is processed into the array
+                display_solution(problem)
+                print('Would you like to generate a solution for this problem?')
+                answer = input('Y or N?')
+                if answer == 'Y':
+                    x = display_problem(x)
+                    convert_toLower_if_horizontal(x)
+                    if search_selection == 1:
+                        print('BFS Solution for problem {}'.format(problem))
+                        start_time = time.time()
+                        print(bfs_search(x))
+                        executionTime = (time.time() - start_time)
+                        print('Execution time in seconds: ' + str(executionTime))
+                if answer == 'N':
+                    pass
+            if problem_selection == 2:
+                with open('output.txt', 'w') as f:
+
+                    for i in range(1, 41):
+                        print('Results for bfs will be written to output.txt')
+                        print('BFS Solution for problem {}'.format(i), file=f)
+
+                        x = retrieve_problem(i, temp)
+                        x = display_problem(x)
+
+                        convert_toLower_if_horizontal(x)
+                        start_time = time.time()
+                        print(bfs_search(x), file=f)
+                        executionTime = (time.time() - start_time)
+                        print('Execution time in seconds: ' + str(executionTime), file=f)
+                        print('BFS Solution for problem {} generated'.format(i))
+
+        if search_selection == 2:
+            print("1.Would you like to run this for a specific problem?")
+            print("2. Would you like to run this for all problems?")
+            problem_selection = int(input())
+            # Load specific problem and then
+            if problem_selection == 1:
+                problem = int(input("Which problem would you like to load?"))
+
+                x = retrieve_problem(problem, temp)
+
+                display_solution(problem)
+                print('Would you like to generate a solution for this problem?')
+                answer = input('Y or N?')
+                if answer == 'Y':
+                    x = display_problem(x)
+                    convert_toLower_if_horizontal(x)
+                    if search_selection == 1:
+                        print('BFS Solution for problem {}'.format(problem))
+                        start_time = time.time()
+                        print(iterative_deepening(x))
+                        executionTime = (time.time() - start_time)
+                        print('Execution time in seconds: ' + str(executionTime))
+                if answer == 'N':
+                    pass
+            if problem_selection == 2:
+                with open('output.txt', 'w') as f:
+
+                    for i in range(1, 41):
+                        print('Results for bfs will be written to output.txt')
+                        print('BFS Solution for problem {}'.format(i), file=f)
+
+                        x = retrieve_problem(i, temp)
+                        x = display_problem(x)
+
+                        convert_toLower_if_horizontal(x)
+                        start_time = time.time()
+                        print(iterative_deepening(x), file=f)
+                        executionTime = (time.time() - start_time)
+                        print('Execution time in seconds: ' + str(executionTime), file=f)
+                        print('Iterative Deepening Solution for problem {} generated'.format(i))
+
+        if search_selection == 3:
+
+            print("1.Would you like to run this for a specific problem?")
+            print("2. Would you like to run this for all problems?")
+            problem_selection = int(input())
+            # Load specific problem and then
+            if problem_selection == 1:
+                problem = int(input("Which problem would you like to load?"))
+                # if problem in failing_problems:
+
+                x = retrieve_problem(problem, temp)
+                # Prints the problem before it is processed into the array
+                display_solution(problem)
+                print('Would you like to generate a solution for this problem?')
+                answer = input('Y or N?')
+                if answer == 'Y':
+                    x = display_problem(x)
+                    convert_toLower_if_horizontal(x)
+
+                    print('A* Solution for problem {}'.format(problem))
                     start_time = time.time()
-                    print(bfs_search(x))
+                    print(a_star_search(x))
                     executionTime = (time.time() - start_time)
                     print('Execution time in seconds: ' + str(executionTime))
-            if answer == 'N':
-                pass
-        if problem_selection == 2:
-            with open('output.txt', 'w') as f:
+                if answer == 'N':
+                    pass
+            if problem_selection == 2:
+                with open('output.txt', 'w') as f:
 
-                for i in range(1, 41):
-                    print('Results for bfs will be written to output.txt')
-                    print('BFS Solution for problem {}'.format(i), file=f)
+                    for i in range(1, 41):
+                        print('Results for A* will be written to output.txt')
+                        print('A* Solution for problem {}'.format(i), file=f)
 
-                    x = retrieve_problem(i, temp)
-                    x = display_problem(x)
+                        x = retrieve_problem(i, temp)
+                        x = display_problem(x)
 
-                    convert_toLower_if_horizontal(x)
-                    start_time = time.time()
-                    print(iterative_deepening(x), file=f)
-                    executionTime = (time.time() - start_time)
-                    print('Execution time in seconds: ' + str(executionTime), file=f)
-                    print('BFS Solution for problem {} generated'.format(i))
-
+                        convert_toLower_if_horizontal(x)
+                        start_time = time.time()
+                        print(a_star_search(x), file=f)
+                        executionTime = (time.time() - start_time)
+                        print('Execution time in seconds: ' + str(executionTime), file=f)
+                        print('A* Solution for problem {} generated'.format(i))
     # Commented code bellow is for de
     # temp = text_load()
     #
@@ -493,7 +665,7 @@ if __name__ == '__main__':
     # x = display_problem(x)
     # print(x)
     # convert_toLower_if_horizontal(x)
-    # print(iterative_deepening(x))
+    # print(a_star_search(x))
 # for p in x:
 #     print('\n')
 #     print(p)
